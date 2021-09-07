@@ -98,7 +98,7 @@ try {
       core.setFailed(`Can't create file ${filename}`)
       process.exit(1)
     } else {
-      if (exec('sudo chmod 600 ' + filename).code !== 0) {
+      if (exec('chmod 600 ' + filename).code !== 0) {
         core.setFailed(`Can't set permission file ${filename}`)
         process.exit(1)
       }
@@ -116,7 +116,7 @@ try {
   createFile('user.crt', process.env.USER_CRT)
   createFile('user.key', process.env.USER_KEY)
 
-  if (exec(`sudo openvpn --config ${finalPath} --daemon`).code !== 0) {
+  if (exec(`openvpn --config ${finalPath} --daemon`).code !== 0) {
     core.setFailed(`Can't setup config ${finalPath}`)
     process.exit(1)
   }
